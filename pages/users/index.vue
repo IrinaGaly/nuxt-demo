@@ -5,7 +5,7 @@
 
   })
 
-  const { data: users } = await useAsyncData("/api/users");
+  const { data: users } = await useFetch("/api/users");
 
 </script>
 <template>
