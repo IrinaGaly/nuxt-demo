@@ -11,4 +11,23 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["./stores"],
   },
+  tailwindcss: {
+    cssPath: "~/assets/css/tailwind.css",
+    configPath: "tailwind.config.js",
+    exposeConfig: false,
+    injectPosition: 0,
+    viewer: true,
+  },
+  colorMode: {
+    classSuffix: "",
+  },
+  content: {
+    highlight: {
+      theme: "github-dark",
+      preload: ["vue"],
+    },
+    navigation: {
+      fields: ["home", "about", "users"],
+    },
+  },
 });
