@@ -1,20 +1,20 @@
 <script setup>
- definePageMeta({
-    layout: 'empty',
-    middleware: ['already-auth'],
-  })
+definePageMeta({
+  layout: "empty",
+  middleware: ["already-auth"],
+});
 
-  const userStore = useUserStore();
+const userStore = useUserStore();
 
-  const signIn = async () => {
-    await userStore.signIn(
-      {
-        username: 'kminchelle',
-        password: '0lelplR',
-      })
-      await navigateTo("/home", {replace: true});
-  }
-
+const signIn = async () => {
+  await userStore.signIn({
+    // username: 'kminchelle',
+    // password: '0lelplR',
+    username: "emilys",
+    password: "emilyspass",
+  });
+  await navigateTo("/home", { replace: true });
+};
 </script>
 
 <template>

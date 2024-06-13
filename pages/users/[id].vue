@@ -1,28 +1,39 @@
 <script setup>
-  const { id } = useRoute().params
-  const userPosts = ref([]);
+const { id } = useRoute().params;
+const userPosts = ref([]);
 
-  // This useFetch composable is a wrapper around the useAsyncData composable and $fetch utility. 
-  const { data: user } = await useFetch(`https://dummyjson.com/users/${id}`)
+// This useFetch composable is a wrapper around the useAsyncData composable and $fetch utility.
+const { data: user } = await useFetch(`https://dummyjson.com/users/${id}`);
 
-  if (!user.value) {
-    throw createError({ statusCode: 404, statusMessage: "User not found", fatal: true})
-  }
+if (!user.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "User not found",
+    fatal: true,
+  });
+}
 
-  async function seeUserPosts() {
-    const { data: posts } = await useFetch(`https://dummyjson.com/users/${id}/posts`)
+async function seeUserPosts() {
+  const { data: posts } = await useFetch(
+    `https://dummyjson.com/users/${id}/posts`
+  );
 
-    userPosts.value = posts.value.posts;
-  }
+  userPosts.value = posts.value.posts;
+}
 
-  definePageMeta({
-    layout: 'users',
-  })
+definePageMeta({
+  layout: "users",
+});
 </script>
 
 <template>
   <div>
-    <img :src="user.image"/>
+    <Head>
+      <Title>{{ user.firstName }} | {{ user.username }}</Title>
+      <Meta name="description" content="User personal info" />
+    </Head>
+
+    <img :src="user.image" />
     <p>{{ user.email }}</p>
     <p>{{ user.username }}</p>
     <div class="flex">
